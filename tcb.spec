@@ -67,7 +67,7 @@ libnss_tcb is the accompanying NSS module for pam_tcb.
 
 %package -n %{develname}
 Summary:	Libraries and header files for building tcb-aware applications
-Group:		Development/Libraries
+Group:		Development/Other
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 
