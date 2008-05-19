@@ -19,6 +19,7 @@ BuildRequires:	pam-devel
 Requires:	%{libname} = %{version}
 Requires:	pam_tcb = %{version}
 Requires:	nss_tcb = %{version}
+Requires:	shadow-utils >= 4.0.12-10mdv
 
 %description
 The tcb package consists of three components: pam_tcb, libnss_tcb, and
