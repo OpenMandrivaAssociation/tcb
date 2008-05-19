@@ -47,6 +47,7 @@ by programs from the shadow-utils package.
 Summary:	PAM module for TCB
 Group:		System/Libraries
 Requires:	%{libname} = %{version}
+Conflicts:	pam <= 0.99.8.1-8mdv
 
 %description -n pam_tcb
 pam_tcb is a PAM module which supersedes pam_unix and pam_pwdb.
