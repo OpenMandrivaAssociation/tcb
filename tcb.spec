@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 2
+Release:	 	%mkrel 3
 
 %define major		0
 %define libname		%mklibname %{name} %{major}
@@ -11,6 +11,7 @@ License:	BSD or GPL
 Group:		System/Libraries
 URL: 		http://www.openwall.com/tcb/
 Source0:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz
+Patch0:		tcb-1.0.2-assume_shadow.patch
 
 BuildRoot: 	%{_tmppath}/%{name}-%{version}
 BuildRequires:	glibc-crypt_blowfish-devel
@@ -80,6 +81,7 @@ building tcb-aware applications.
 
 %prep
 %setup -q
+%patch0 -p1
 
 
 %build
