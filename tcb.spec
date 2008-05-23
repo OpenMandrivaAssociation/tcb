@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 4
+Release:	 	%mkrel 5
 
 %define major		0
 %define libname		%mklibname %{name} %{major}
@@ -82,8 +82,8 @@ building tcb-aware applications.
 %prep
 %setup -q
 %patch0 -p1
-cat Make.defs | sed -e 's|LIBEXECDIR = /usr/libexec|LIBEXECDIR = /usr/lib|' >Make.defs.new
-mv -f Make.defs.new Make.defs
+cat Make.defs | sed -e "s|LIBEXECDIR = /usr/libexec|LIBEXECDIR = %{_libdir}|" >Make.defs.new
+cat Make.defs.new | sed -e "s|/lib$|/%{_lib}|g" >Make.defs
 
 
 %build
