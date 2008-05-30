@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 5
+Release:	 	%mkrel 6
 
 %define major		0
 %define libname		%mklibname %{name} %{major}
@@ -131,7 +131,7 @@ make install-non-root install-pam_unix install-pam_pwdb \
 %files -n %{libname}
 %defattr(-,root,root)
 /%{_lib}/libtcb.so.*
-%attr(0710,root,chkpwd) %verify(not mode group) %dir %{_libdir}/chkpwd
+%attr(0711,root,chkpwd) %verify(not mode group) %dir %{_libdir}/chkpwd
 %attr(2711,root,shadow) %verify(not mode group) %{_libdir}/chkpwd/tcb_chkpwd
 %{_mandir}/man5/tcb.5*
 
