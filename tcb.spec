@@ -1,10 +1,11 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 6
+Release:	 	%mkrel 7
 
 %define major		0
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
+%define libpamname	%mklibname pam 0
 
 Summary:	Libraries and tools implementing the tcb password shadowing scheme
 License:	BSD or GPL
@@ -48,7 +49,8 @@ by programs from the shadow-utils package.
 Summary:	PAM module for TCB
 Group:		System/Libraries
 Requires:	%{libname} = %{version}
-Conflicts:	pam <= 0.99.8.1-8mdv
+Conflicts:	pam < 0.99.8.1-9
+Conflicts:	%{libpamname} < 0.99.8.1-9
 
 %description -n pam_tcb
 pam_tcb is a PAM module which supersedes pam_unix and pam_pwdb.
