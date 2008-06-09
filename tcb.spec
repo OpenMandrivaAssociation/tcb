@@ -104,17 +104,25 @@ make install-non-root install-pam_unix install-pam_pwdb \
     SLIBDIR=/%{_lib}
 
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 
 %post -n nss_tcb
+%if %mdkversion < 200900
 /sbin/ldconfig
+%endif
 %_post_service nscd
 
 
 %postun -n nss_tcb
+%if %mdkversion < 200900
 /sbin/ldconfig
+%endif
 %_preun_service nscd
 
 
