@@ -116,14 +116,14 @@ make install-non-root install-pam_unix install-pam_pwdb \
 %if %mdkversion < 200900
 /sbin/ldconfig
 %endif
-%_post_service nscd
+[[ -f %{_initrddir}/nscd ]] && %_post_service nscd
 
 
 %postun -n nss_tcb
 %if %mdkversion < 200900
 /sbin/ldconfig
 %endif
-%_preun_service nscd
+[[ -f %{_initrddir}/nscd ]] && %_preun_service nscd
 
 
 %clean
