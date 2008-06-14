@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 9
+Release:	 	%mkrel 10
 
 %define major		0
 %define libname		%mklibname %{name} %{major}
@@ -116,14 +116,18 @@ make install-non-root install-pam_unix install-pam_pwdb \
 %if %mdkversion < 200900
 /sbin/ldconfig
 %endif
-[[ -f %{_initrddir}/nscd ]] && %_post_service nscd || :
+if [ -f %{_initrddir}/nscd ]; then
+    %_post_service nscd
+fi
 
 
 %postun -n nss_tcb
 %if %mdkversion < 200900
 /sbin/ldconfig
 %endif
-[[ -f %{_initrddir}/nscd ]] && %_preun_service nscd || :
+if [ -f %{_initrddir}/nscd ]; then
+    %_preun_service nscd
+fi
 
 
 %clean
