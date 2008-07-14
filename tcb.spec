@@ -1,6 +1,7 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 10
+Release:	 	%mkrel 11
+%define set_tcbver	0.1
 
 %define major		0
 %define libname		%mklibname %{name} %{major}
@@ -12,6 +13,7 @@ License:	BSD or GPL
 Group:		System/Libraries
 URL: 		http://www.openwall.com/tcb/
 Source0:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz
+Source1:	set_tcb-0.1.tar.bz2
 Patch0:		tcb-1.0.2-assume_shadow.patch
 
 BuildRoot: 	%{_tmppath}/%{name}-%{version}
@@ -82,7 +84,7 @@ building tcb-aware applications.
 
 
 %prep
-%setup -q
+%setup -q -a 1
 %patch0 -p1
 cat Make.defs | sed -e "s|LIBEXECDIR = /usr/libexec|LIBEXECDIR = %{_libdir}|" >Make.defs.new
 cat Make.defs.new | sed -e "s|/lib$|/%{_lib}|g" >Make.defs
@@ -102,6 +104,10 @@ make install-non-root install-pam_unix install-pam_pwdb \
     LIBDIR=%{_libdir} \
     LIBEXECDIR=%{_libdir} \
     SLIBDIR=/%{_lib}
+
+mkdir -p %{buildroot}%{_sbindir}
+install -m 0750 set_tcb-%{set_tcbver}/set_tcb %{buildroot}%{_sbindir}/
+install -m 0644 set_tcb-%{set_tcbver}/set_tcb.8 %{buildroot}%{_mandir}/man8/
 
 
 %if %mdkversion < 200900
@@ -139,8 +145,10 @@ fi
 %doc LICENSE
 /sbin/tcb_convert
 /sbin/tcb_unconvert
+%{_sbindir}/set_tcb
 %{_mandir}/man8/tcb_convert.8*
 %{_mandir}/man8/tcb_unconvert.8*
+%{_mandir}/man8/set_tcb.8*
 
 %files -n %{libname}
 %defattr(-,root,root)
