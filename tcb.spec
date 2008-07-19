@@ -1,7 +1,7 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 11
-%define set_tcbver	0.1
+Release:	 	%mkrel 12
+%define set_tcbver	0.2
 
 %define major		0
 %define libname		%mklibname %{name} %{major}
@@ -13,7 +13,7 @@ License:	BSD or GPL
 Group:		System/Libraries
 URL: 		http://www.openwall.com/tcb/
 Source0:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz
-Source1:	set_tcb-0.1.tar.bz2
+Source1:	set_tcb-%{set_tcbver}.tar.bz2
 Patch0:		tcb-1.0.2-assume_shadow.patch
 
 BuildRoot: 	%{_tmppath}/%{name}-%{version}
