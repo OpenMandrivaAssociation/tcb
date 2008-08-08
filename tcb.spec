@@ -1,7 +1,7 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 12
-%define set_tcbver	0.2
+Release:	 	%mkrel 13
+%define set_tcbver	0.3
 
 %define major		0
 %define libname		%mklibname %{name} %{major}
