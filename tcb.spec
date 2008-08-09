@@ -1,7 +1,7 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 13
-%define set_tcbver	0.3
+Release:	 	%mkrel 14
+%define set_tcbver	0.5
 
 %define major		0
 %define libname		%mklibname %{name} %{major}
@@ -98,7 +98,7 @@ CFLAGS="%{optflags} -DENABLE_SETFSUGID" %make
 %install
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
 
-make install-non-root install-pam_unix install-pam_pwdb \
+make install-non-root install-pam_pwdb \
     DESTDIR=%{buildroot} \
     MANDIR=%{_mandir} \
     LIBDIR=%{_libdir} \
@@ -136,6 +136,10 @@ if [ -f %{_initrddir}/nscd ]; then
 fi
 
 
+%triggerpostun -- %{_lib}pam0 < 0.99.8.1-13
+/usr/sbin/set_tcb --auto --migrate
+
+
 %clean
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
 
@@ -165,14 +169,8 @@ fi
 %defattr(-,root,root)
 /%{_lib}/security/pam_pwdb.so
 /%{_lib}/security/pam_tcb.so
-/%{_lib}/security/pam_unix.so
-/%{_lib}/security/pam_unix_acct.so
-/%{_lib}/security/pam_unix_auth.so
-/%{_lib}/security/pam_unix_passwd.so
-/%{_lib}/security/pam_unix_session.so
 %{_mandir}/man8/pam_pwdb.8*
 %{_mandir}/man8/pam_tcb.8*
-%{_mandir}/man8/pam_unix.8*
 
 %files -n %{develname}
 %defattr(-,root,root)
