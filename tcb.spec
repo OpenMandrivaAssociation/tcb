@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 14
+Release:	 	%mkrel 15
 %define set_tcbver	0.5
 
 %define major		0
@@ -51,8 +51,8 @@ by programs from the shadow-utils package.
 Summary:	PAM module for TCB
 Group:		System/Libraries
 Requires:	%{libname} = %{version}
-Conflicts:	pam < 0.99.8.1-9
-Conflicts:	%{libpamname} < 0.99.8.1-9
+Conflicts:	pam < 0.99.8.1-13
+Conflicts:	%{libpamname} < 0.99.8.1-13
 
 %description -n pam_tcb
 pam_tcb is a PAM module which supersedes pam_unix and pam_pwdb.
