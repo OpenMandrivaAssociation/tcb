@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 15
+Release:	 	%mkrel 16
 %define set_tcbver	0.5
 
 %define major		0
@@ -134,10 +134,6 @@ fi
 if [ -f %{_initrddir}/nscd ]; then
     %_preun_service nscd
 fi
-
-
-%triggerpostun -- %{_lib}pam0 < 0.99.8.1-13
-/usr/sbin/set_tcb --auto --migrate
 
 
 %clean
