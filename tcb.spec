@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 16
+Release:	 	%mkrel 17
 %define set_tcbver	0.5
 
 %define major		0
@@ -153,8 +153,8 @@ fi
 %files -n %{libname}
 %defattr(-,root,root)
 /%{_lib}/libtcb.so.*
-%attr(0711,root,chkpwd) %verify(not mode group) %dir %{_libdir}/chkpwd
-%attr(2711,root,shadow) %verify(not mode group) %{_libdir}/chkpwd/tcb_chkpwd
+%attr(0755,root,chkpwd) %verify(not mode group) %dir %{_libdir}/chkpwd
+%attr(2755,root,shadow) %verify(not mode group) %{_libdir}/chkpwd/tcb_chkpwd
 %{_mandir}/man5/tcb.5*
 
 %files -n nss_tcb
