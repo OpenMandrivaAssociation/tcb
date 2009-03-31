@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.2
-Release:	 	%mkrel 20
+Release:	 	%mkrel 21
 %define set_tcbver	0.7
 
 %define major		0
@@ -16,6 +16,7 @@ Source0:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz
 Source1:	set_tcb-%{set_tcbver}.tar.bz2
 Patch0:		tcb-1.0.2-assume_shadow.patch
 Patch1:		tcb-1.0.2-exit.patch
+Patch2:		set_tcb-0.7-nofork.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}
 BuildRequires:	glibc-crypt_blowfish-devel
 BuildRequires:	pam-devel
@@ -87,6 +88,8 @@ building tcb-aware applications.
 %setup -q -a 1
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
+
 cat Make.defs | sed -e "s|LIBEXECDIR = /usr/libexec|LIBEXECDIR = %{_libdir}|" >Make.defs.new
 cat Make.defs.new | sed -e "s|/lib$|/%{_lib}|g" >Make.defs
 
