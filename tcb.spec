@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.3
-Release:	 	%mkrel 4
+Release:	 	%mkrel 5
 %define set_tcbver	0.7
 
 %define major		0
