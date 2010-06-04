@@ -1,6 +1,6 @@
 Name:	 		tcb
 Version:	 	1.0.3
-Release:	 	%mkrel 5
+Release:	 	%mkrel 6
 %define set_tcbver	0.7
 
 %define major		0
@@ -20,6 +20,8 @@ Patch2:		set_tcb-0.7-nofork.patch
 Patch3:		tcb-1.0.3-warn.patch
 # Use translations from pam for the available messages (#59331)
 Patch4:		tcb-1.0.3-i18n.patch
+# Fix tcb_is_suspect (breaks at least on btrfs) (#59588)
+Patch5:		tcb-1.0.3-btrfs.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}
 BuildRequires:	glibc-crypt_blowfish-devel
 BuildRequires:	pam-devel
@@ -93,6 +95,7 @@ building tcb-aware applications.
 %patch2 -p0
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 cat Make.defs | sed -e "s|LIBEXECDIR = /usr/libexec|LIBEXECDIR = %{_libdir}|" >Make.defs.new
 cat Make.defs.new | sed -e "s|/lib$|/%{_lib}|g" >Make.defs
