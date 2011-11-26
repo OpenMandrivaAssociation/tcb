@@ -7,7 +7,7 @@
 
 Summary:	Libraries and tools implementing the tcb password shadowing scheme
 Name:		tcb
-Version:	1.0.6
+Version:	1.1
 Release:	%mkrel 1
 License:	BSD or GPL
 Group:		System/Libraries
@@ -21,7 +21,7 @@ Patch2:		set_tcb-0.7-nofork.patch
 Patch3:		tcb-1.0.3-warn.patch
 # Use translations from pam for the available messages (#59331)
 Patch4:		tcb-1.0.3-i18n.patch
-BuildRequires:	glibc-crypt_blowfish-devel
+BuildRequires:	glibc-crypt_blowfish-devel >= 1.2
 BuildRequires:	pam-devel
 Requires:	%{libname} >= %{version}
 Requires:	pam_tcb = %{version}
@@ -43,7 +43,7 @@ package.
 %package -n %{libname}
 Summary:        Libraries and tools implementing the tcb password shadowing scheme
 Group:          System/Libraries
-Requires:	glibc-crypt_blowfish
+Requires:	glibc-crypt_blowfish >= 1.2
 Requires(pre):	setup >= 2.7.12-2mdv
 
 %description -n %{libname}
@@ -70,7 +70,7 @@ Summary:	NSS library for TCB
 Group:		System/Libraries
 Requires(post):	rpm-helper
 Requires(postun): rpm-helper
-Requires:	%{libname} = %{version}
+Requires:	%{libname} >= %{version}
 
 %description -n nss_tcb
 libnss_tcb is the accompanying NSS module for pam_tcb.
@@ -99,7 +99,7 @@ cat Make.defs.new | sed -e "s|/lib$|/%{_lib}|g" >Make.defs
 
 %build
 %serverbuild
-CFLAGS="%{optflags} -DENABLE_SETFSUGID" %make
+CFLAGS="%{optflags} -DENABLE_SETFSUGID" LDFLAGS="%{ldflags}" %make
 
 %install
 rm -rf %{buildroot}
@@ -115,26 +115,12 @@ mkdir -p %{buildroot}%{_sbindir}
 install -m 0750 set_tcb-%{set_tcbver}/set_tcb %{buildroot}%{_sbindir}/
 install -m 0644 set_tcb-%{set_tcbver}/set_tcb.8 %{buildroot}%{_mandir}/man8/
 
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %post -n nss_tcb
-%if %mdkversion < 200900
-/sbin/ldconfig
-%endif
 if [ -f %{_initrddir}/nscd ]; then
     %_post_service nscd
 fi
 
 %postun -n nss_tcb
-%if %mdkversion < 200900
-/sbin/ldconfig
-%endif
 if [ -f %{_initrddir}/nscd ]; then
     %_preun_service nscd
 fi
