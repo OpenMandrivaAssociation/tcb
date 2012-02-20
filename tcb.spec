@@ -9,7 +9,7 @@
 Summary:	Libraries and tools implementing the tcb password shadowing scheme
 Name:		tcb
 Version:	1.1
-Release:	2
+Release:	3
 License:	BSD or GPL
 Group:		System/Libraries
 URL: 		http://www.openwall.com/tcb/
@@ -17,7 +17,7 @@ Source0:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz
 Source1:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz.sign
 Source2:	set_tcb-%{set_tcbver}.tar.bz2
 Patch0:		tcb-1.0.2-assume_shadow.patch
-Patch2:		set_tcb-0.7-nofork.patch
+Patch2:		set_tcb-0.7-nofork-blowfish-1.2.diff
 # Fix handling of negative fields in /etc/shadow on x86_64 with recent glibc (#52330)
 Patch3:		tcb-1.0.3-warn.patch
 # Use translations from pam for the available messages (#59331)
