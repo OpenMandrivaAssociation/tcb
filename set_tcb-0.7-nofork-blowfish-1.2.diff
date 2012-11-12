@@ -1,0 +1,15 @@
+--- set_tcb-0.7/set_tcb	2008-12-17 23:44:55.000000000 +0100
++++ set_tcb-0.7/set_tcb.oden	2012-02-20 16:03:15.664470980 +0100
+@@ -356,9 +356,9 @@
+         printf "${star} Upgrading /etc/pam.d/system-auth to use pam_tcb... "
+         cp -f /etc/pam.d/system-auth ${newauth}
+         cp -f /etc/pam.d/system-auth /etc/pam.d/system-auth.original
+-        sed -i -e 's|^auth\([[:blank:]]*[[:alpha:]]*[[:blank:]]*\)pam_unix.so.*|auth\1pam_tcb.so shadow fork nullok prefix=\$2a\$ count=8|' \
+-               -e 's|^account\([[:blank:]]*[[:alpha:]]*[[:blank:]]*\)pam_unix.so.*|account\1pam_tcb.so shadow fork|' \
+-               -e 's|^password\([[:blank:]]*[[:alpha:]]*[[:blank:]]*\)pam_unix.so.*|password\1pam_tcb.so use_authtok shadow write_to=shadow fork nullok prefix=\$2a\$ count=8|' \
++        sed -i -e 's|^auth\([[:blank:]]*[[:alpha:]]*[[:blank:]]*\)pam_unix.so.*|auth\1pam_tcb.so shadow nullok prefix=\$2y\$ count=8|' \
++               -e 's|^account\([[:blank:]]*[[:alpha:]]*[[:blank:]]*\)pam_unix.so.*|account\1pam_tcb.so shadow|' \
++               -e 's|^password\([[:blank:]]*[[:alpha:]]*[[:blank:]]*\)pam_unix.so.*|password\1pam_tcb.so use_authtok shadow write_to=shadow nullok prefix=\$2y\$ count=8|' \
+                -e 's|^session\([[:blank:]]*[[:alpha:]]*[[:blank:]]*\)pam_unix.so.*|session\1pam_tcb.so|' ${newauth}
+         if [ "$?" != "0" ]; then
+ 	    printf "${ystar} ERROR: Changing /etc/pam.d/system-auth failed!  Aborting!\n\n"

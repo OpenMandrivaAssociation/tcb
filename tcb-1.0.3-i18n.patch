@@ -1,0 +1,76 @@
+diff -ru tcb-1.0.3/pam_tcb//support.c tcb-1.0.3.new/pam_tcb//support.c
+--- tcb-1.0.3/pam_tcb//support.c	2009-04-03 17:01:52.000000000 +0200
++++ tcb-1.0.3.new/pam_tcb//support.c	2010-05-21 14:06:20.000000000 +0200
+@@ -996,6 +996,11 @@
+ 	set(UNIX_OPENLOG);
+ #endif
+ 
++	/* init i18n */
++	setlocale(LC_ALL, "");
++	bindtextdomain("Linux-PAM", "/usr/share/locale");
++	textdomain("Linux-PAM");
++
+ 	/* set some flags manually */
+ 	if (getuid() == 0 && !(flags & PAM_CHANGE_EXPIRED_AUTHTOK)) {
+ 		D(("IAMROOT"));
+diff -ru tcb-1.0.3/pam_tcb//support.h tcb-1.0.3.new/pam_tcb//support.h
+--- tcb-1.0.3/pam_tcb//support.h	2005-12-28 00:05:02.000000000 +0100
++++ tcb-1.0.3.new/pam_tcb//support.h	2010-05-21 14:07:23.000000000 +0200
+@@ -6,6 +6,10 @@
+ 
+ #include "attribute.h"
+ 
++#include <libintl.h>
++#include <locale.h>
++#define _(string) gettext(string)
++
+ #ifdef __LINUX_PAM__
+ # include <security/pam_ext.h>
+ #else
+@@ -20,35 +24,35 @@
+ 
+ /* Password prompt to use for authentication */
+ #define PROMPT_PASS \
+-	"Password: "
++	_("Password: ")
+ 
+ /* Prompts to use for password changes */
+ #define PROMPT_OLDPASS \
+-	"Enter current password: "
++	_("(current) UNIX password: ")
+ #define PROMPT_NEWPASS1 \
+-	"Enter new password: "
++	_("Enter new UNIX password: ")
+ #define PROMPT_NEWPASS2 \
+-	"Re-type new password: "
++	_("Retype new UNIX password: ")
+ 
+ /* Possible messages during account management */
+ #define MESSAGE_ACCT_EXPIRED \
+-	"Your account has expired; please contact your system administrator."
++	_("Your account has expired; please contact your system administrator")
+ #define MESSAGE_PASS_EXPIRED \
+ 	"You are required to change your password immediately."
+ #define MESSAGE_WARN_EXPIRE \
+-	"Warning: your password will expire in %d day%s."
++	_("Warning: your password will expire in %d days")
+ 
+ /* Possible messages during password changes */
+ #define MESSAGE_CHANGING \
+-	"Changing password for %s."
++	_("Changing password for %s.")
+ #define MESSAGE_PASS_SAME \
+-	"Password unchanged."
++	_("Password unchanged")
+ #define MESSAGE_PASS_NONE \
+-	"No password supplied."
++	_("No password supplied")
+ #define MESSAGE_TOOSOON \
+-	"You must wait longer to change your password."
++	_("You must wait longer to change your password")
+ #define MESSAGE_MISTYPED \
+-	"Sorry, passwords do not match."
++	_("Sorry, passwords do not match.")
+ 
+ /*
+  * Here are the various boolean options recognized by the unix module.

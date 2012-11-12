@@ -1,0 +1,13 @@
+--- libs/Makefile	2010-02-12 00:01:21.000000000 +0100
++++ libs/Makefile.oden	2011-12-11 11:30:19.607699851 +0100
+@@ -23,8 +23,8 @@
+ 	ln -sf $(LIBTCB) libtcb.so
+ 
+ $(LIBNSS): nss.o $(NSS_MAP) $(LIBTCB_LONG)
+-	$(CC) $(LDFLAGS) -shared -o $@ -Wl,--version-script=$(NSS_MAP) \
+-		$< $(LIBNSL) -ltcb
++	$(CC) $(LDFLAGS) -shared -o $@ -Wl,-soname,$(LIBNSS) \
++		-Wl,--version-script=$(NSS_MAP) $< $(LIBNSL) -ltcb
+ 
+ .c.o:
+ 	$(CC) $(CFLAGS) -fPIC -c $< -o $@
