@@ -157,3 +157,134 @@ fi
 %{_includedir}/tcb.h
 %{_libdir}/libtcb.a
 %{_libdir}/libtcb.so
+
+
+%changelog
+* Fri May 06 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0.6-1mdv2011.0
++ Revision: 670668
+- mass rebuild
+
+* Sun Dec 05 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0.6-0mdv2011.0
++ Revision: 609635
+- 1.0.6
+- drop P5, it's applied upstream
+- spec file massage
+
+* Fri Dec 03 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0.3-7mdv2011.0
++ Revision: 607982
+- rebuild
+
+* Fri Jun 04 2010 Pascal Terjan <pterjan@mandriva.org> 1.0.3-6mdv2010.1
++ Revision: 547106
+- fix tcb_is_suspect (breaks at least on btrfs) (#59588)
+- translate more strings
+
+* Fri May 21 2010 Pascal Terjan <pterjan@mandriva.org> 1.0.3-4mdv2010.1
++ Revision: 545602
+- Use translations from pam for available messages (#59331)
+
+* Thu Dec 17 2009 Pascal Terjan <pterjan@mandriva.org> 1.0.3-3mdv2010.1
++ Revision: 479732
+- Fix handling of negative fields in /etc/shadow on x86_64 with recent glibc (#52330)
+
+* Thu Sep 03 2009 Christophe Fergeau <cfergeau@mandriva.com> 1.0.3-2mdv2010.0
++ Revision: 427284
+- rebuild
+
+* Thu Apr 09 2009 Oden Eriksson <oeriksson@mandriva.com> 1.0.3-1mdv2009.1
++ Revision: 365388
+- 1.0.3
+- drop the exit patch, it's implemented upstream (P1)
+
+* Tue Mar 31 2009 Pascal Terjan <pterjan@mandriva.org> 1.0.2-21mdv2009.1
++ Revision: 362887
+- Do not set fork option
+
+* Mon Mar 30 2009 Pascal Terjan <pterjan@mandriva.org> 1.0.2-20mdv2009.1
++ Revision: 362228
+- Don't call atexit signals in child process (#43106)
+
+* Thu Dec 18 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-19mdv2009.1
++ Revision: 315404
+- set_tcb 0.7; should fix some issues with changing password hashes
+
+* Wed Aug 27 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-18mdv2009.0
++ Revision: 276450
+- set_tcb 0.6
+
+* Mon Aug 25 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-17mdv2009.0
++ Revision: 275953
+- relax permissions of the password checker
+
+* Tue Aug 12 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-16mdv2009.0
++ Revision: 271142
+- remove the %%trigger script, due to install ordering it will never be run so put it in the pam package instead
+
+* Sun Aug 10 2008 Olivier Blin <oblin@mandriva.com> 1.0.2-15mdv2009.0
++ Revision: 270204
+- conflict with pam and libpam0 < 0.99.8.1-13
+  (or else we can end up with no pam_unix on the system)
+
+* Sat Aug 09 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-14mdv2009.0
++ Revision: 270080
+- set_tcb 0.5
+  don't install pam_unix compat symlinks
+  call set_tcb to migrate login.defs and system-auth
+
+* Fri Aug 08 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-13mdv2009.0
++ Revision: 269005
+- set_tcb 0.3
+
+* Sat Jul 19 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-12mdv2009.0
++ Revision: 238837
+- set_tcb 0.2
+
+* Mon Jul 14 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-11mdv2009.0
++ Revision: 234436
+- include the set_tcb script
+
+* Sat Jun 14 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-10mdv2009.0
++ Revision: 219107
+- really fix the nscd restart
+
+* Wed Jun 11 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-9mdv2009.0
++ Revision: 218049
+- make the nscd test exit 0 if the nscd initscript doesn't exist
+
+* Mon Jun 09 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-8mdv2009.0
++ Revision: 217264
+- make sure the nscd initscript exists before trying to restart it
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Sat May 31 2008 Frederik Himpe <fhimpe@mandriva.org> 1.0.2-7mdv2009.0
++ Revision: 213851
+- Fix conflicts to make it upgrade without conflicts from 2008.1
+
+* Fri May 30 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-6mdv2009.0
++ Revision: 213352
+- make /usr/lib/chkpwd world-executable so gnome-screensaver will work (as we cannot make it sgid chkpwd)
+
+* Fri May 23 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-5mdv2009.0
++ Revision: 210386
+- further make fixes
+
+* Fri May 23 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-4mdv2009.0
++ Revision: 210180
+- fix where pam_tcb is finding it's password helper
+
+* Wed May 21 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-3mdv2009.0
++ Revision: 209784
+- added assume_shadow.patch: pam_unix assumes that 'shadow' is set always,
+  but pam_tcb only assumes this for account, so add it to the other pam types
+
+* Mon May 19 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-2mdv2009.0
++ Revision: 209102
+- add conflicts on old pre-TCB-aware pam
+- requires TCB-aware shadow-utils
+
+* Sun May 18 2008 Vincent Danen <vdanen@mandriva.com> 1.0.2-1mdv2009.0
++ Revision: 208802
+- fix group on the -devel package
+- import tcb from Annvix
