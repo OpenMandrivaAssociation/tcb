@@ -25,7 +25,7 @@ BuildRequires:	glibc-crypt_blowfish-devel
 BuildRequires:	pam-devel
 %if %mdvver >= 201300
 # (tpg) provides rpc/rpc.h
-BuildRequires:	libtirpc-devel
+BuildRequires:	tirpc-devel
 %endif
 Requires:	%{libname} >= %{version}
 Requires:	pam_tcb = %{version}
