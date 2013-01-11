@@ -23,6 +23,10 @@ Patch3:		tcb-1.0.3-warn.patch
 Patch4:		tcb-1.0.3-i18n.patch
 BuildRequires:	glibc-crypt_blowfish-devel
 BuildRequires:	pam-devel
+%if %mdvver >= 201300
+# (tpg) provides rpc/rpc.h
+BuildRequires:	libtirpc-devel
+%endif
 Requires:	%{libname} >= %{version}
 Requires:	pam_tcb = %{version}
 Requires:	nss_tcb = %{version}
