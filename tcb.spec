@@ -7,11 +7,11 @@
 
 Summary:	Libraries and tools implementing the tcb password shadowing scheme
 Name:		tcb
-Version:	1.0.6
-Release:	%mkrel 3
+Version:	1.1
+Release:	1
 License:	BSD or GPL
 Group:		System/Libraries
-URL: 		http://www.openwall.com/tcb/
+URL:		http://www.openwall.com/tcb/
 Source0:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz
 Source1:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz.sign
 Source2:	set_tcb-%{set_tcbver}.tar.bz2
@@ -44,9 +44,9 @@ package.
 
 
 %package -n %{libname}
-Summary:        Libraries and tools implementing the tcb password shadowing scheme
-Group:          System/Libraries
-Requires:	glibc-crypt_blowfish
+Summary:		Libraries and tools implementing the tcb password shadowing scheme
+Group:			System/Libraries
+Requires:		glibc-crypt_blowfish
 Requires(pre):	setup >= 2.7.12-2mdv
 
 %description -n %{libname}
@@ -72,7 +72,7 @@ being the primary example) to operate with little privilege.
 Summary:	NSS library for TCB
 Group:		System/Libraries
 Requires(post):	rpm-helper
-Requires(postun): rpm-helper
+Requires(postun):	rpm-helper
 Requires:	%{libname} = %{version}
 
 %description -n nss_tcb
@@ -105,7 +105,6 @@ cat Make.defs.new | sed -e "s|/lib$|/%{_lib}|g" >Make.defs
 CFLAGS="%{optflags} -DENABLE_SETFSUGID" %make
 
 %install
-rm -rf %{buildroot}
 
 make install-non-root install-pam_pwdb \
     DESTDIR=%{buildroot} \
