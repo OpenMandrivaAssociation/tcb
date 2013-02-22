@@ -71,6 +71,8 @@ being the primary example) to operate with little privilege.
 %package -n	%{libnss}
 Summary:	NSS library for TCB
 Group:		System/Libraries
+Requires(post):	rpm-helper
+Requires(postun):rpm-helper
 %rename		nss_tcb
 
 %description -n	%{libnss}
