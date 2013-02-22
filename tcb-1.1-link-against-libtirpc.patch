@@ -1,0 +1,11 @@
+--- tcb-1.1/pam_tcb/Makefile~	2005-12-28 00:05:01.000000000 +0100
++++ tcb-1.1/pam_tcb/Makefile	2013-02-22 10:20:41.734181686 +0100
+@@ -13,7 +13,7 @@ all: $(PAM_TCB)
+ 
+ $(PAM_TCB): $(LIBOBJ) $(PAM_MAP)
+ 	$(CC) $(LDFLAGS) -shared -o $@ -Wl,--version-script=$(PAM_MAP) \
+-		$(LIBOBJ) -lnsl -lcrypt -lpam -ltcb
++		$(LIBOBJ) -lnsl -lcrypt -lpam -ltcb -ltirpc
+ 
+ .c.o:
+ 	$(CC) $(CFLAGS) -fPIC -c $< -o $@

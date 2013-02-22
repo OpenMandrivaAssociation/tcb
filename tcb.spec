@@ -9,7 +9,7 @@
 Summary:	Libraries and tools implementing the tcb password shadowing scheme
 Name:		tcb
 Version:	1.1
-Release:	3
+Release:	4
 License:	BSD or GPL
 Group:		System/Libraries
 URL: 		http://www.openwall.com/tcb/
@@ -23,6 +23,7 @@ Patch3:		tcb-1.0.3-warn.patch
 # Use translations from pam for the available messages (#59331)
 Patch4:		tcb-1.0.3-i18n.patch
 Patch5:		tcb-1.1-nss_soname_fix.diff
+Patch6:		tcb-1.1-link-against-libtirpc.patch
 BuildRequires:	glibc-crypt_blowfish-devel >= 1.2
 BuildRequires:	pam-devel
 %if %mdvver >= 201300
@@ -92,6 +93,7 @@ building tcb-aware applications.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p0
+%patch6 -p1 -b .tirpc~
 
 cat Make.defs | sed -e "s|LIBEXECDIR = /usr/libexec|LIBEXECDIR = %{_libdir}|" >Make.defs.new
 cat Make.defs.new | sed -e "s|/lib$|/%{_lib}|g" >Make.defs
