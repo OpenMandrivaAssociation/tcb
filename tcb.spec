@@ -24,7 +24,11 @@ Patch3:		tcb-1.0.3-warn.patch
 Patch4:		tcb-1.0.3-i18n.patch
 Patch5:		tcb-1.1-nss_soname_fix.diff
 BuildRequires:	glibc-crypt_blowfish-devel >= 1.2
-|BuildRequires:	pam-devel
+BuildRequires:	pam-devel
+%if %mdvver >= 201300
+# (tpg) provides rpc/rpc.h
+BuildRequires:	pkgconfig(libtirpc)
+%endif
 
 # for what was in the lib pkg (group IDs)
 Requires(pre):	setup >= 2.7.12-2
