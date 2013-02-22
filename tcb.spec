@@ -1,10 +1,10 @@
 %define set_tcbver 0.7
 
-%define major 0
+%define major	0
 %define nssmajor 2
-%define libname		%mklibname %{name} %{major}
-%define libnss		%mklibname nss_%{name} %{nssmajor}
-%define develname	%mklibname %{name} -d
+%define libname	%mklibname %{name} %{major}
+%define libnss	%mklibname nss_%{name} %{nssmajor}
+%define devname	%mklibname %{name} -d
 
 Summary:	Libraries and tools implementing the tcb password shadowing scheme
 Name:		tcb
@@ -24,7 +24,7 @@ Patch3:		tcb-1.0.3-warn.patch
 Patch4:		tcb-1.0.3-i18n.patch
 Patch5:		tcb-1.1-nss_soname_fix.diff
 BuildRequires:	glibc-crypt_blowfish-devel >= 1.2
-BuildRequires:	pam-devel
+|BuildRequires:	pam-devel
 
 # for what was in the lib pkg (group IDs)
 Requires(pre):	setup >= 2.7.12-2
@@ -43,41 +43,41 @@ is the accompanying NSS module.  libtcb contains code shared by the
 PAM and NSS modules and is also used by programs from the shadow-utils
 package.
 
-%package -n %{libname}
+%package -n	%{libname}
 Summary:        Libraries and tools implementing the tcb password shadowing scheme
 Group:          System/Libraries
 
-%description -n %{libname}
+%description -n	%{libname}
 libtcb contains code shared by the PAM and NSS modules and is also used
 by programs from the shadow-utils package.
 
-%package -n pam_tcb
+%package -n	pam_tcb
 Summary:	PAM module for TCB
 Group:		System/Libraries
 Conflicts:	pam < 0.99.8.1-13
 Conflicts:	%{_lib}pam0 < 0.99.8.1-13
 
-%description -n pam_tcb
+%description -n	pam_tcb
 pam_tcb is a PAM module which supersedes pam_unix and pam_pwdb.
 It also implements the tcb password shadowing scheme (see tcb(5) for
 details).  The tcb scheme allows many core system utilities (passwd(1)
 being the primary example) to operate with little privilege.
 
-%package -n %{libnss}
+%package -n	%{libnss}
 Summary:	NSS library for TCB
 Group:		System/Libraries
-%rename nss_tcb
+%rename		nss_tcb
 
-%description -n %{libnss}
+%description -n	%{libnss}
 libnss_tcb is the accompanying NSS module for pam_tcb.
 
-%package -n %{develname}
+%package -n	%{devname}
 Summary:	Libraries and header files for building tcb-aware applications
 Group:		Development/Other
 Requires:	%{libname} >= %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %{develname}
+%description -n %{devname}
 This package contains static libraries and header files needed for
 building tcb-aware applications.
 
@@ -97,8 +97,6 @@ cat Make.defs.new | sed -e "s|/lib$|/%{_lib}|g" >Make.defs
 CFLAGS="%{optflags} -DENABLE_SETFSUGID" LDFLAGS="%{ldflags}" %make
 
 %install
-rm -rf %{buildroot}
-
 make install-non-root install-pam_pwdb \
     DESTDIR=%{buildroot} \
     MANDIR=%{_mandir} \
@@ -106,9 +104,8 @@ make install-non-root install-pam_pwdb \
     LIBEXECDIR=%{_libdir} \
     SLIBDIR=/%{_lib}
 
-mkdir -p %{buildroot}%{_sbindir}
-install -m 0750 set_tcb-%{set_tcbver}/set_tcb %{buildroot}%{_sbindir}/
-install -m 0644 set_tcb-%{set_tcbver}/set_tcb.8 %{buildroot}%{_mandir}/man8/
+install -m750 set_tcb-%{set_tcbver}/set_tcb -D %{buildroot}%{_sbindir}/set_tcb
+install -m644 set_tcb-%{set_tcbver}/set_tcb.8 -D %{buildroot}%{_mandir}/man8/set_tcb.8*
 
 %post -n %{libnss}
 if [ -f %{_initrddir}/nscd ]; then
@@ -144,7 +141,7 @@ fi
 %{_mandir}/man8/pam_pwdb.8*
 %{_mandir}/man8/pam_tcb.8*
 
-%files -n %{develname}
+%files -n %{devname}
 %{_includedir}/tcb.h
 %{_libdir}/libtcb.a
 %{_libdir}/libtcb.so
