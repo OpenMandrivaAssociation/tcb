@@ -97,12 +97,9 @@ building tcb-aware applications.
 %patch5 -p0
 %patch6 -p1 -b .tirpc~
 
-cat Make.defs | sed -e "s|LIBEXECDIR = /usr/libexec|LIBEXECDIR = %{_libdir}|" >Make.defs.new
-cat Make.defs.new | sed -e "s|/lib$|/%{_lib}|g" >Make.defs
-
 %build
 %serverbuild
-CFLAGS="%{optflags} -DENABLE_SETFSUGID" LDFLAGS="%{ldflags}" %make
+CFLAGS="%{optflags} -DENABLE_SETFSUGID" LDFLAGS="%{ldflags}" %make LIBEXECDIR=%{_libexecdir} LIBDIR=%{_libdir} SLIBDIR=/%{_lib}
 
 %install
 make install-non-root install-pam_pwdb \
