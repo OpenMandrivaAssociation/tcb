@@ -9,7 +9,7 @@
 Summary:	Libraries and tools implementing the tcb password shadowing scheme
 Name:		tcb
 Version:	1.1
-Release:	5
+Release:	6
 License:	BSD or GPL
 Group:		System/Libraries
 URL:		http://www.openwall.com/tcb/
@@ -98,7 +98,7 @@ building tcb-aware applications.
 %patch6 -p1 -b .tirpc~
 
 %build
-%serverbuild
+%serverbuild_hardened
 CFLAGS="%{optflags} -DENABLE_SETFSUGID" LDFLAGS="%{ldflags}" %make LIBEXECDIR=%{_libexecdir} LIBDIR=%{_libdir} SLIBDIR=/%{_lib}
 
 %install
