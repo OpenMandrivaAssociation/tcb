@@ -127,7 +127,7 @@ fi
 /sbin/tcb_convert
 /sbin/tcb_unconvert
 %attr(0755,root,chkpwd) %verify(not mode group) %dir %{_libexecdir}/chkpwd
-%attr(2755,root,shadow) %verify(not mode group) %{_libexecdir}/chkpwd/tcb_chkpwd
+%attr(2755,root,shadow) %verify(not mode group) %{_libdir}/chkpwd/tcb_chkpwd
 %{_mandir}/man5/tcb.5*
 %{_sbindir}/set_tcb
 %{_mandir}/man8/tcb_convert.8*
