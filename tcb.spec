@@ -126,7 +126,7 @@ fi
 %doc LICENSE
 /sbin/tcb_convert
 /sbin/tcb_unconvert
-%attr(0755,root,chkpwd) %verify(not mode group) %dir %{_libexecdir}/chkpwd
+%attr(0755,root,chkpwd) %verify(not mode group) %dir %{_libdir}/chkpwd
 %attr(2755,root,shadow) %verify(not mode group) %{_libdir}/chkpwd/tcb_chkpwd
 %{_mandir}/man5/tcb.5*
 %{_sbindir}/set_tcb
