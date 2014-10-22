@@ -9,7 +9,7 @@
 Summary:	Libraries and tools implementing the tcb password shadowing scheme
 Name:		tcb
 Version:	1.1
-Release:	12
+Release:	13
 License:	BSD or GPL
 Group:		System/Libraries
 URL:		http://www.openwall.com/tcb/
@@ -71,6 +71,7 @@ being the primary example) to operate with little privilege.
 %package -n	%{libnss}
 Summary:	NSS library for TCB
 Group:		System/Libraries
+Requires(post):	bash
 Requires(post):	rpm-helper
 Requires(postun):rpm-helper
 %rename		nss_tcb
