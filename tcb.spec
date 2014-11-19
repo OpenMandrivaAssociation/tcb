@@ -99,7 +99,7 @@ building tcb-aware applications.
 
 %build
 %serverbuild_hardened
-CFLAGS="%{optflags} -DENABLE_SETFSUGID" LDFLAGS="%{ldflags}" %make LIBEXECDIR=%{_libexecdir} LIBDIR=%{_libdir} SLIBDIR=/%{_lib}
+CFLAGS="%{optflags} -DENABLE_SETFSUGID" LDFLAGS="%{ldflags}" %make LIBEXECDIR=%{_libdir} LIBDIR=%{_libdir} SLIBDIR=/%{_lib}
 
 %install
 make install-non-root install-pam_pwdb \
