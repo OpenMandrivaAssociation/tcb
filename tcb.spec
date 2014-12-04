@@ -9,7 +9,7 @@
 Summary:	Libraries and tools implementing the tcb password shadowing scheme
 Name:		tcb
 Version:	1.1
-Release:	16
+Release:	17
 License:	BSD or GPL
 Group:		System/Libraries
 URL:		http://www.openwall.com/tcb/
@@ -113,6 +113,8 @@ make install-non-root install-pam_pwdb \
 install -m750 set_tcb-%{set_tcbver}/set_tcb -D %{buildroot}%{_sbindir}/set_tcb
 install -m644 set_tcb-%{set_tcbver}/set_tcb.8 -D %{buildroot}%{_mandir}/man8/set_tcb.8*
 
+ln -s %{_libdir}/chkpwd/tcb_chkpwd %{buildroot}%{_libexecdir}/chkpwd/tcb_chkpwd
+
 %post -n %{libnss}
 if [ -f %{_unitdir}/nscd.service ]; then
     %systemd_post nscd
@@ -129,6 +131,7 @@ fi
 /sbin/tcb_unconvert
 %attr(0755,root,chkpwd) %verify(not mode group) %dir %{_libdir}/chkpwd
 %attr(2755,root,shadow) %verify(not mode group) %{_libdir}/chkpwd/tcb_chkpwd
+%attr(2755,root,shadow) %verify(not mode group) %{_libexecdir}/chkpwd/tcb_chkpwd
 %{_mandir}/man5/tcb.5*
 %{_sbindir}/set_tcb
 %{_mandir}/man8/tcb_convert.8*
