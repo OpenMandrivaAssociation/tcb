@@ -113,6 +113,8 @@ make install-non-root install-pam_pwdb \
 install -m750 set_tcb-%{set_tcbver}/set_tcb -D %{buildroot}%{_sbindir}/set_tcb
 install -m644 set_tcb-%{set_tcbver}/set_tcb.8 -D %{buildroot}%{_mandir}/man8/set_tcb.8*
 
+# (tpg) add missing symlink
+mkdir -p %{buildroot}%{_libexecdir}/chkpwd
 ln -s %{_libdir}/chkpwd/tcb_chkpwd %{buildroot}%{_libexecdir}/chkpwd/tcb_chkpwd
 
 %post -n %{libnss}
