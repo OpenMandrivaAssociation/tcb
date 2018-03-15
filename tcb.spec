@@ -26,10 +26,7 @@ Patch5:		tcb-1.1-nss_soname_fix.diff
 Patch6:		tcb-1.1-link-against-libtirpc.patch
 BuildRequires:	glibc-crypt_blowfish-devel >= 1.2
 BuildRequires:	pam-devel
-%if "%{distepoch}" >= "2013.0"
-# (tpg) provides rpc/rpc.h
 BuildRequires:	pkgconfig(libtirpc)
-%endif
 
 # for what was in the lib pkg (group IDs)
 Requires(pre):	setup >= 2.7.12-2
