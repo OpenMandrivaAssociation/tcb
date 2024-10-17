@@ -13,7 +13,7 @@ Version:	1.2
 Release:	1
 License:	BSD or GPL
 Group:		System/Libraries
-URL:		http://www.openwall.com/tcb/
+URL:		https://www.openwall.com/tcb/
 Source0:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz
 Source1:	ftp://ftp.openwall.com/pub/projects/tcb/%{name}-%{version}.tar.gz.sign
 Source2:	set_tcb-%{set_tcbver}.tar.bz2
