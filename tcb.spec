@@ -22,6 +22,7 @@ Patch2:		set_tcb-0.7-nofork-blowfish-1.2.diff
 # Fix handling of negative fields in /etc/shadow on x86_64 with recent glibc (#52330)
 Patch3:		tcb-1.0.3-warn.patch
 Patch5:		tcb-1.1-nss_soname_fix.diff
+BuildRequires:	make
 BuildRequires:	glibc-crypt_blowfish-devel >= 1.2
 BuildRequires:	pam-devel
 BuildRequires:	pkgconfig(libtirpc)
